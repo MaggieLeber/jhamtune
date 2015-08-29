@@ -1,0 +1,119 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>For developers: Writing new JHamTune radio drivers</title><meta content="DocBook XSL Stylesheets V1.62.4" name="generator"><link rel="home" href="index.html" title="JHamTune: User Manual"><link rel="up" href="ch04.html" title="Chapter&nbsp;4.&nbsp;Radio Drivers"><link rel="previous" href="ch04s03.html" title="Simulated Radio"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10146"></a>For developers: Writing new JHamTune radio drivers</h2></div></div><div></div></div><p>
+JHamTune drivers are responsible for translating method calls on the
+<tt class="interfacename">JHTRadio</tt> interface into
+the appropriate signals to the attached radio. Both the API JavaDoc 
+for the JHTRadio interface and the source code for the Yaesu FT-847 driver
+can serve as guides for writers of new driver classes. 
+The CAT command set of the FT-847 appears in the the driver source code 
+as comments. Developers of new drivers are invited to contribute them to the 
+JHamTune distribution, contact Maggie at <tt class="email">&lt;<a href="mailto:k3xs@arrl.net">k3xs@arrl.net</a>&gt;</tt>. 
+</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CLASS-8"></a>Interface JHTRadio</h3></div></div><div></div></div><a name="N10156" class="indexterm"></a><a name="N1015A" class="indexterm"></a><p>
+an interface implemented by drivers for each <span class="bold"><b>JHamTune</b></span> supported radio.
+      </p><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N10166"></a>Synopsis</h4></div></div><div></div></div><pre class="programlisting">
+package com.k3xs.JHamTune;
+
+public interface <span class="bold"><b>JHTRadio</b></span> {
+
+  <span class="emphasis"><em>// Public Methods</em></span>
+  public void <span class="bold"><b>connect</b></span>();
+<a name="N10178" class="indexterm"></a>  public void <span class="bold"><b>disconnect</b></span>();
+<a name="N10181" class="indexterm"></a>  public void <span class="bold"><b>setFreq</b></span>(int <span class="emphasis"><em>freq</em></span>);
+<a name="N1018D" class="indexterm"></a>  public void <span class="bold"><b>setBand</b></span>(com.k3xs.JHamTune.JHTBand <span class="emphasis"><em>band</em></span>);
+<a name="N10199" class="indexterm"></a>  public int <span class="bold"><b>getFreq</b></span>();
+<a name="N101A2" class="indexterm"></a>  public void <span class="bold"><b>setMode</b></span>(com.k3xs.JHamTune.JHTMode <span class="emphasis"><em>mode</em></span>);
+<a name="N101AE" class="indexterm"></a>  public void <span class="bold"><b>setTone</b></span>(com.k3xs.JHamTune.JHTCTCSS <span class="emphasis"><em>tone</em></span>);
+<a name="N101BA" class="indexterm"></a>  public JHTMode <span class="bold"><b>getMode</b></span>();
+<a name="N101C3" class="indexterm"></a>  public int <span class="bold"><b>getSmeter</b></span>();
+<a name="N101CC" class="indexterm"></a>  public String <span class="bold"><b>getDriverName</b></span>();
+<a name="N101D5" class="indexterm"></a>  public String <span class="bold"><b>getPortName</b></span>();
+<a name="N101DE" class="indexterm"></a>  public String <span class="bold"><b>getName</b></span>();
+<a name="N101E7" class="indexterm"></a>  public Collection <span class="bold"><b>getRxBands</b></span>();
+<a name="N101F0" class="indexterm"></a>  public Collection <span class="bold"><b>getRxTxBands</b></span>();
+<a name="N101F9" class="indexterm"></a>}
+        </pre><p><b>Inheritance Path.&nbsp;</b>
+            <a href="ch04s04.html#CLASS-8">com.k3xs.JHamTune.JHTRadio</a>
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N10206"></a>Members</h4></div></div><div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-1"></a>Method connect()</h5></div></div><div></div></div><a name="N1020E" class="indexterm"></a><a name="N10212" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>connect</b></span>();
+<a name="N10223" class="indexterm"></a>
+          </pre><h5><a name="N10228"></a>
+Description
+          </h5><p>
+connect to the radio
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-2"></a>Method disconnect()</h5></div></div><div></div></div><a name="N10232" class="indexterm"></a><a name="N10236" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>disconnect</b></span>();
+<a name="N10247" class="indexterm"></a>
+          </pre><h5><a name="N1024C"></a>
+Description
+          </h5><p>
+disconnect automatic control from the radio
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-10"></a>Method getDriverName()</h5></div></div><div></div></div><a name="N10256" class="indexterm"></a><a name="N1025A" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public String <span class="bold"><b>getDriverName</b></span>();
+<a name="N1026B" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the name for this radio
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-5"></a>Method getFreq()</h5></div></div><div></div></div><a name="N1027F" class="indexterm"></a><a name="N10283" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public int <span class="bold"><b>getFreq</b></span>();
+<a name="N10294" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the current frequency in Hz
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-8"></a>Method getMode()</h5></div></div><div></div></div><a name="N102A8" class="indexterm"></a><a name="N102AC" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public JHTMode <span class="bold"><b>getMode</b></span>();
+<a name="N102BD" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the current modulation mode
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-12"></a>Method getName()</h5></div></div><div></div></div><a name="N102D1" class="indexterm"></a><a name="N102D5" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public String <span class="bold"><b>getName</b></span>();
+<a name="N102E6" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the name for this instance, 
+ usually driverName + " on " + port
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-11"></a>Method getPortName()</h5></div></div><div></div></div><a name="N102FA" class="indexterm"></a><a name="N102FE" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public String <span class="bold"><b>getPortName</b></span>();
+<a name="N1030F" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the name for the port attaching this radio, 
+ or null if not connect()ed
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-13"></a>Method getRxBands()</h5></div></div><div></div></div><a name="N10323" class="indexterm"></a><a name="N10327" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public Collection <span class="bold"><b>getRxBands</b></span>();
+<a name="N10338" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+a Collection of receive-only JHTBands
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-14"></a>Method getRxTxBands()</h5></div></div><div></div></div><a name="N1034C" class="indexterm"></a><a name="N10350" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public Collection <span class="bold"><b>getRxTxBands</b></span>();
+<a name="N10361" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+a Collection of transceive-capable JHTBands
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-9"></a>Method getSmeter()</h5></div></div><div></div></div><a name="N10375" class="indexterm"></a><a name="N10379" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public int <span class="bold"><b>getSmeter</b></span>();
+<a name="N1038A" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the current signal strength (S-meter reading expressed 0-31)
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-4"></a>Method setBand(JHTBand)</h5></div></div><div></div></div><a name="N1039E" class="indexterm"></a><a name="N103A2" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>setBand</b></span>(com.k3xs.JHamTune.JHTBand <span class="emphasis"><em>band</em></span>);
+<a name="N103B6" class="indexterm"></a>
+          </pre><h5><a name="N103BB"></a>
+Description
+          </h5><p>
+set mode and band limits from a JHTBand.
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-3"></a>Method setFreq(int)</h5></div></div><div></div></div><a name="N103C5" class="indexterm"></a><a name="N103C9" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>setFreq</b></span>(int <span class="emphasis"><em>freq</em></span>);
+<a name="N103DD" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term">
+                <tt class="varname">freq</tt>
+              </span></dt><dd><p>
+tune the radio to this frequency in Hz.
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-6"></a>Method setMode(JHTMode)</h5></div></div><div></div></div><a name="N103F3" class="indexterm"></a><a name="N103F7" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>setMode</b></span>(com.k3xs.JHamTune.JHTMode <span class="emphasis"><em>mode</em></span>);
+<a name="N1040B" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term">
+                <tt class="varname">mode</tt>
+              </span></dt><dd><p>
+set the radio to this modulation mode.
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-7"></a>Method setTone(JHTCTCSS)</h5></div></div><div></div></div><a name="N10421" class="indexterm"></a><a name="N10425" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>setTone</b></span>(com.k3xs.JHamTune.JHTCTCSS <span class="emphasis"><em>tone</em></span>);
+<a name="N10439" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term">
+                <tt class="varname">tone</tt>
+              </span></dt><dd><p>
+set this CTCSS/PL tone encoding.
+</p></dd></dl></div></div></div></div></div></body></html>

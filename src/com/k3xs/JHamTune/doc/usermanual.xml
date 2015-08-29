@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2///EN"
+               "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" >
+<book id="JHamTuneJavaHelp">
+<bookinfo>
+<title>JHamTune: User Manual</title>
+<graphic fileref="./JHTLogo256.jpg" format="JPG"/>
+<authorgroup>
+<author><firstname>Margaret</firstname><surname>Leber</surname>
+   <affiliation><address><email>k3xs@arrl.net</email></address></affiliation>
+</author>
+</authorgroup>
+<copyright>
+<year>2004</year>
+<holder>Margaret Leber</holder>
+</copyright>
+<pubdate>30 January 2004</pubdate>
+<abstract>
+<para>
+This document is a guide for users of the JHamTune system 
+for controlling amateur radio stations. 
+</para>
+<para>
+<graphic fileref="./JHTLogo256.jpg" format="JPG"/>
+</para>
+</abstract>
+<revhistory>
+<revision>
+<revnumber>1.0</revnumber>
+<date>January 21 2004</date>
+<authorinitials>msl</authorinitials>
+<revremark>initial</revremark>
+</revision>
+</revhistory>
+</bookinfo>
+
+<chapter id="install">
+<title>Installation</title>
+<section><title>The Preview Edition</title>
+<para>
+The Preview Edition of JHamTune (packaged in the file 
+<filename>JHamTuneDemo.jar</filename>)
+has only one radio driver (Yaesu FT-847) and
+no means of configuring other drivers or saving driver configuration parameters. 
+This is because at this time there is only one working driver, and the driver 
+configuration code has not yet been written. Until several radio drivers 
+have been developed, the driver model and interface may be in a state of flux. 
+</para>
+<para>
+To launch the Preview Edition, include the name of the serial port to which 
+your FT-847 CAT port is attached as a command line parameter, for example:
+<simplelist columns="1" type="vert">
+<member><userinput>java -jar JHamTuneDemo.jar COM2</userinput> or</member> 
+<member><userinput>java -jar JHamTuneDemo.jar /dev/ttyS1</userinput></member>
+</simplelist>
+</para>
+</section>
+<section><title>System Requirements</title>
+<section><title>Java Runtime</title>
+<para>
+The current version of JHamTune was developed and tested with Version 1.4.2 of
+the Sun Microsystems Java 2 Standard Edition System Developer's Kit 
+(J2SE SDK). 
+It requires a compatible Java 2 Runtime Environment. 
+If your computer doesn't have a Java runtime, visit
+<ulink url="http://java.com">
+http://java.com
+</ulink>
+</para>
+</section>
+<section><title>Java Libraries</title>
+<section><title>javax.comm</title>
+<para>
+Javacomm provides platform-independent access to parallel and serial ports. 
+<ulink url="http://java.sun.com/products/javacomm">
+The Sun Javacomm page:
+http://java.sun.com/products/javacomm
+</ulink>
+On Linux platforms, 
+</para>
+</section>
+<section id="installhelp"><title>javax.help</title>
+<para>
+Access to this user manual from the Help menu is provided with JavaHelp.   
+<ulink url="http://java.sun.com/products/javahelp">
+The Sun Java Help page: 
+http://java.sun.com/products/javahelp
+</ulink> If the jh.jar file is not found during help initialization, a 
+warning message will be logged and the <guimenuitem>User Manual</guimenuitem>
+menu choice will be unavailable. </para>
+</section>
+</section>
+<section><title>Configuration</title>
+<para></para>
+</section>
+</section>
+</chapter>
+
+<chapter id="future">
+<title>Future Directions</title>
+<para>
+Development of new JHamTune features will be based on directions
+of interest to the program developers and also on suggestions from users. 
+Some features under consideration are:</para>
+<itemizedlist>
+<listitem><para>Satellite tracking and pass prediction</para></listitem>
+<listitem><para>Scheduled contact management and logging, 
+including an interface to the ARRL 
+<productname>Logbook of the World</productname> system.</para></listitem>
+<listitem><para>Exchangable frequency database information</para></listitem>
+<listitem><para>Signal recording and analysis</para></listitem>
+<listitem><para>Direct  support for use of digital modes: packet, PSK-31, etc
+</para></listitem>
+</itemizedlist>
+<para>Let us know at <email>k3xs@arrl.net</email> about your own desires, ideas, or 
+interest in participating as a developer. </para>
+</chapter>
+
+<chapter id="gui">
+<title>Operation</title>
+<para><graphic fileref="./JHamTune.jpg" format="JPG"/></para>
+
+<section><title>Main Window</title>
+<figure><title>Main Window</title>
+
+<graphic fileref="./main.jpg" format="JPG"/>
+
+</figure>
+<para>
+The main window holds a list of tuner settings, and a menu bar. 
+</para>
+<para>
+Each tuner setting contains</para> 
+<itemizedlist>
+<listitem><para>a title</para></listitem> 
+<listitem><para>a receive frequency</para></listitem>
+<listitem><para>a modulation mode</para></listitem>
+</itemizedlist>
+<para>and optionally</para>
+<itemizedlist>
+<listitem><para>
+a transmit frequency for full-duplex or split frequency operation
+</para></listitem> 
+<listitem><para>
+a CTCSS (also called "PL tone") channel
+</para></listitem> 
+<listitem><para>
+high and low frequncies specifying band limits for band sweeping operaion
+</para></listitem>
+</itemizedlist>
+
+<para>The list is editable; new entries can be created with the 
+Edit...Insert menu, and deleted with Edit...Delete. 
+Lists can be saved as disk files and reloaded using the file menu.</para>
+<para>
+</para>
+
+<section><title>Menus</title>
+ 	
+<section><title>File</title>
+<para>The File menu has submenus for loading and saving frequency data tables. 
+"Get Bands from radio" will load a set of frequency tables giving the basic
+capabilities of the connected radio; this information is provided by 
+the radio driver.  
+</para>
+<para>The Save dialog has a checkbox item labelled "Export in XML format". 
+Checking this box will write an XML-encoded copy of the current frequency
+list to the output file. This XML-encoded version should be portable across 
+different verions of JHamTune. The <guisubmenu>Open...</guisubmenu> function 
+will automatically detect and process the XML-encoded version.</para>
+</section>
+<section><title>Edit</title>
+<para>
+The <guimenu>Edit</guimenu> menus allow you to create new or delete entries 
+in the current frequnecy list. <guisubmenu>Insert</guisubmenu> 
+creates a new empty entry, while
+<guisubmenu>Snapshot</guisubmenu> creates a new entry with frequency and 
+mode information copied from the radio's current setting. 
+<guisubmenu>Delete</guisubmenu> will delete the selected list entry
+To edit individual fields on an entry, click the field with your mouse. 
+</para>
+</section>
+<section><title>Tune</title>
+<para>
+The <guimenu>Tune</guimenu> menu can create a Sweeper box from the 
+current row in the frequency list, or create a scanner window from 
+multiple selected frequencies in the list. It can also tune the radio directly
+to the selected frequency.
+</para>
+</section>
+<section><title>Help</title>
+<para>The <guimenu>Help</guimenu> menu lets you display either this 
+<guimenuitem>usermanual</guimenuitem>, or an 
+<guimenuitem>"about"</guimenuitem> box that 
+gives you version and copyright information.
+(In the event that the JavaHelp library can't be found duing startup, 
+the user manual will not be available, see <xref linkend="installhelp"/>
+</para>
+</section>
+	
+ </section>
+</section>
+
+<section><title>Tuner Display</title>
+<figure><title>Tuner</title><graphic fileref="./tune.jpg" format="JPG"/></figure>
+<para>The Tuner window displays the current frequency and modulation mode of the 
+radio, along with a horizontal bar depicting the signal strength as displayed
+by the radio's S-meter.</para>
+</section>
+
+<section><title>Scanner Window</title>
+<figure><title>Scanner</title><graphic fileref="./scan.jpg" format="JPG"/>
+</figure>
+<para>The Scanner Window displays a collection of channel buttons representing 
+a selection of frequencies from the Main Window, an S-meter, 
+and a slider that sets a virtual squelch level.  </para>
+<para>
+JHamTune listens on each frequency in turn looking for a signal that exceeds the 
+squelch level, and when it finds one it stays tuned to that frequency until 
+either the signal drops or the channel is locked out with a single mouse click.
+When a channel breaks squelch, the button title turns bright red. 
+When the scan resumes, each time that channel is found to be quiet, the red 
+color is slightly darkened. By observing the relative colors, you can 
+judge which channels have been the most active recently.</para>
+<para>
+A single mouse click will remove a channel temporarily from the scan, useful 
+when the frequency is busy but not currently of interest. 
+These "locked-out" channels show a darker background. 
+</para>
+<para>
+You can force the scanner to listen to one channel with a double mouse click; 
+the button will turn white, that frequency and mode will be tuned,
+and scanning will stop. To resume scanning, click
+on the locked channel once; scanning will resume and the channel will be locked 
+out of the scan. To return the locked-out channel to the scan click on it again
+</para>
+</section>
+
+<section><title>Sweeper Box</title>
+<figure><title>Sweeper</title>
+<graphic fileref="./sweep.jpg" format="JPG"/>
+</figure>
+<para>The Sweeper Box tunes a radio in narrow steps over a defined frequncy band
+and records the observed signal strength as reported by the radio's signal 
+strength meter. When the sweeping process is complete, individual signal peaks 
+can be tuned by clicking with the mouse on the peak, and a vertical red-line 
+cursor shows the last frequency tuned by this method.</para>
+</section>
+
+</chapter>
+
+<chapter id="drivers"><title>Radio Drivers</title>
+<section><title>General</title>
+<para>
+JHamTune is designed around a modular driver scheme. A JHamTune driver is
+a Java class implementing the <interfacename>JHTRadio</interfacename>interface 
+for a particular radio, allowing the same user interface to be used with any 
+supported radio, within the limits of that radio's capabilites. 
+</para>
+<para>
+The original JHamTune driver was designed for my Yaesu FT-847 radio.
+</para>
+</section>
+<section><title>Yaesu FT-847</title>
+<para>
+</para>
+</section>
+<section><title>Simulated Radio</title>
+<para>The SimulatedRadio driver does not control an actual radio. 
+It's intended to be used for demonstrating and testing JHamTune when an actual
+radio is not available. 
+Inputs don't actually do anything, and outputs are pretty much random.</para>
+</section>
+<section>
+<title>For developers: Writing new JHamTune radio drivers</title>
+<para>
+JHamTune drivers are responsible for translating method calls on the
+<interfacename>JHTRadio</interfacename> interface into
+the appropriate signals to the attached radio. Both the API JavaDoc 
+for the JHTRadio interface and the source code for the Yaesu FT-847 driver
+can serve as guides for writers of new driver classes. 
+The CAT command set of the FT-847 appears in the the driver source code 
+as comments. Developers of new drivers are invited to contribute them to the 
+JHamTune distribution, contact Maggie at <email>k3xs@arrl.net</email>. 
+</para>
+    <section xreflabel="com.k3xs.JHamTune.JHTRadio" id="CLASS-8">
+      <title>Interface JHTRadio</title>
+      <indexterm>
+        <primary>JHTRadio</primary>
+      </indexterm>
+      <indexterm>
+        <primary>Interfaces</primary>
+        <secondary>JHTRadio</secondary>
+      </indexterm>
+      <para>
+an interface implemented by drivers for each <emphasis role="bold">JHamTune</emphasis> supported radio.
+      </para>
+      <section>
+        <title>Synopsis</title>
+        <programlisting width="65">
+package com.k3xs.JHamTune;
+
+public interface <emphasis role="bold">JHTRadio</emphasis> {
+
+  <emphasis>// Public Methods</emphasis>
+  public void <emphasis role="bold">connect</emphasis>();
+<indexterm>
+    <primary>connect</primary>
+  </indexterm>  public void <emphasis role="bold">disconnect</emphasis>();
+<indexterm>
+    <primary>disconnect</primary>
+  </indexterm>  public void <emphasis role="bold">setFreq</emphasis>(int <emphasis>freq</emphasis>);
+<indexterm>
+    <primary>setFreq</primary>
+  </indexterm>  public void <emphasis role="bold">setBand</emphasis>(com.k3xs.JHamTune.JHTBand <emphasis>band</emphasis>);
+<indexterm>
+    <primary>setBand</primary>
+  </indexterm>  public int <emphasis role="bold">getFreq</emphasis>();
+<indexterm>
+    <primary>getFreq</primary>
+  </indexterm>  public void <emphasis role="bold">setMode</emphasis>(com.k3xs.JHamTune.JHTMode <emphasis>mode</emphasis>);
+<indexterm>
+    <primary>setMode</primary>
+  </indexterm>  public void <emphasis role="bold">setTone</emphasis>(com.k3xs.JHamTune.JHTCTCSS <emphasis>tone</emphasis>);
+<indexterm>
+    <primary>setTone</primary>
+  </indexterm>  public JHTMode <emphasis role="bold">getMode</emphasis>();
+<indexterm>
+    <primary>getMode</primary>
+  </indexterm>  public int <emphasis role="bold">getSmeter</emphasis>();
+<indexterm>
+    <primary>getSmeter</primary>
+  </indexterm>  public String <emphasis role="bold">getDriverName</emphasis>();
+<indexterm>
+    <primary>getDriverName</primary>
+  </indexterm>  public String <emphasis role="bold">getPortName</emphasis>();
+<indexterm>
+    <primary>getPortName</primary>
+  </indexterm>  public String <emphasis role="bold">getName</emphasis>();
+<indexterm>
+    <primary>getName</primary>
+  </indexterm>  public Collection <emphasis role="bold">getRxBands</emphasis>();
+<indexterm>
+    <primary>getRxBands</primary>
+  </indexterm>  public Collection <emphasis role="bold">getRxTxBands</emphasis>();
+<indexterm>
+    <primary>getRxTxBands</primary>
+  </indexterm>}
+        </programlisting>
+        <formalpara>
+          <title>Inheritance Path</title>
+          <para>
+            <xref linkend="CLASS-8"/>
+          </para>
+        </formalpara>
+      </section>
+      <section>
+        <title>Members</title>
+        <section xreflabel="connect()" id="METHOD-8-1">
+          <title>Method connect()</title>
+          <indexterm>
+            <primary>connect</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>connect</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public void <emphasis role="bold">connect</emphasis>();
+<indexterm>
+    <primary>connect</primary>
+  </indexterm>
+          </programlisting>
+          <bridgehead renderas="sect5">
+Description
+          </bridgehead>
+          <para>
+connect to the radio
+          </para>
+        </section>
+        <section xreflabel="disconnect()" id="METHOD-8-2">
+          <title>Method disconnect()</title>
+          <indexterm>
+            <primary>disconnect</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>disconnect</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public void <emphasis role="bold">disconnect</emphasis>();
+<indexterm>
+    <primary>disconnect</primary>
+  </indexterm>
+          </programlisting>
+          <bridgehead renderas="sect5">
+Description
+          </bridgehead>
+          <para>
+disconnect automatic control from the radio
+          </para>
+        </section>
+        <section xreflabel="getDriverName()" id="METHOD-8-10">
+          <title>Method getDriverName()</title>
+          <indexterm>
+            <primary>getDriverName</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>getDriverName</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public String <emphasis role="bold">getDriverName</emphasis>();
+<indexterm>
+    <primary>getDriverName</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term><emphasis>return</emphasis></term>
+              <listitem>
+<para>
+the name for this radio
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="getFreq()" id="METHOD-8-5">
+          <title>Method getFreq()</title>
+          <indexterm>
+            <primary>getFreq</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>getFreq</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public int <emphasis role="bold">getFreq</emphasis>();
+<indexterm>
+    <primary>getFreq</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term><emphasis>return</emphasis></term>
+              <listitem>
+<para>
+the current frequency in Hz
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="getMode()" id="METHOD-8-8">
+          <title>Method getMode()</title>
+          <indexterm>
+            <primary>getMode</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>getMode</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public JHTMode <emphasis role="bold">getMode</emphasis>();
+<indexterm>
+    <primary>getMode</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term><emphasis>return</emphasis></term>
+              <listitem>
+<para>
+the current modulation mode
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="getName()" id="METHOD-8-12">
+          <title>Method getName()</title>
+          <indexterm>
+            <primary>getName</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>getName</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public String <emphasis role="bold">getName</emphasis>();
+<indexterm>
+    <primary>getName</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term><emphasis>return</emphasis></term>
+              <listitem>
+<para>
+the name for this instance, 
+ usually driverName + " on " + port
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="getPortName()" id="METHOD-8-11">
+          <title>Method getPortName()</title>
+          <indexterm>
+            <primary>getPortName</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>getPortName</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public String <emphasis role="bold">getPortName</emphasis>();
+<indexterm>
+    <primary>getPortName</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term><emphasis>return</emphasis></term>
+              <listitem>
+<para>
+the name for the port attaching this radio, 
+ or null if not connect()ed
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="getRxBands()" id="METHOD-8-13">
+          <title>Method getRxBands()</title>
+          <indexterm>
+            <primary>getRxBands</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>getRxBands</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public Collection <emphasis role="bold">getRxBands</emphasis>();
+<indexterm>
+    <primary>getRxBands</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term><emphasis>return</emphasis></term>
+              <listitem>
+<para>
+a Collection of receive-only JHTBands
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="getRxTxBands()" id="METHOD-8-14">
+          <title>Method getRxTxBands()</title>
+          <indexterm>
+            <primary>getRxTxBands</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>getRxTxBands</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public Collection <emphasis role="bold">getRxTxBands</emphasis>();
+<indexterm>
+    <primary>getRxTxBands</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term><emphasis>return</emphasis></term>
+              <listitem>
+<para>
+a Collection of transceive-capable JHTBands
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="getSmeter()" id="METHOD-8-9">
+          <title>Method getSmeter()</title>
+          <indexterm>
+            <primary>getSmeter</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>getSmeter</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public int <emphasis role="bold">getSmeter</emphasis>();
+<indexterm>
+    <primary>getSmeter</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term><emphasis>return</emphasis></term>
+              <listitem>
+<para>
+the current signal strength (S-meter reading expressed 0-31)
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="setBand(com.k3xs.JHamTune.JHTBand)" id="METHOD-8-4">
+          <title>Method setBand(JHTBand)</title>
+          <indexterm>
+            <primary>setBand</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>setBand</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public void <emphasis role="bold">setBand</emphasis>(com.k3xs.JHamTune.JHTBand <emphasis>band</emphasis>);
+<indexterm>
+    <primary>setBand</primary>
+  </indexterm>
+          </programlisting>
+          <bridgehead renderas="sect5">
+Description
+          </bridgehead>
+          <para>
+set mode and band limits from a JHTBand.
+          </para>
+        </section>
+        <section xreflabel="setFreq(int)" id="METHOD-8-3">
+          <title>Method setFreq(int)</title>
+          <indexterm>
+            <primary>setFreq</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>setFreq</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public void <emphasis role="bold">setFreq</emphasis>(int <emphasis>freq</emphasis>);
+<indexterm>
+    <primary>setFreq</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term>
+                <varname>freq</varname>
+              </term>
+              <listitem>
+<para>
+tune the radio to this frequency in Hz.
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="setMode(com.k3xs.JHamTune.JHTMode)" id="METHOD-8-6">
+          <title>Method setMode(JHTMode)</title>
+          <indexterm>
+            <primary>setMode</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>setMode</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public void <emphasis role="bold">setMode</emphasis>(com.k3xs.JHamTune.JHTMode <emphasis>mode</emphasis>);
+<indexterm>
+    <primary>setMode</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term>
+                <varname>mode</varname>
+              </term>
+              <listitem>
+<para>
+set the radio to this modulation mode.
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+        <section xreflabel="setTone(com.k3xs.JHamTune.JHTCTCSS)" id="METHOD-8-7">
+          <title>Method setTone(JHTCTCSS)</title>
+          <indexterm>
+            <primary>setTone</primary>
+          </indexterm>
+          <indexterm>
+            <primary>Methods</primary>
+            <secondary>setTone</secondary>
+          </indexterm>
+          <programlisting width="65">
+<emphasis>Synopsis: </emphasis>public void <emphasis role="bold">setTone</emphasis>(com.k3xs.JHamTune.JHTCTCSS <emphasis>tone</emphasis>);
+<indexterm>
+    <primary>setTone</primary>
+  </indexterm>
+          </programlisting>
+          <variablelist>
+            <title>Parameters</title>
+            <varlistentry>
+              <term>
+                <varname>tone</varname>
+              </term>
+              <listitem>
+<para>
+set this CTCSS/PL tone encoding.
+</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+      </section>
+    </section>
+</section>
+
+</chapter>
+</book>

@@ -1,0 +1,246 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>JHamTune: User Manual</title><meta content="DocBook XSL Stylesheets V1.62.4" name="generator"><meta name="description" content="
+This document is a guide for users of the JHamTune system 
+for controlling amateur radio stations. 
+ 
+
+"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" lang="en"><div class="titlepage"><div><div><h1 class="title"><a name="JHamTuneJavaHelp"></a>JHamTune: User Manual</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Margaret</span> <span class="surname">Leber</span></h3><div class="affiliation"><div class="address"><p><span style="white-space: pre;"><tt class="email">&lt;<a href="mailto:k3xs@arrl.net">k3xs@arrl.net</a>&gt;</tt></span></p></div></div></div></div></div><div><p class="copyright">Copyright &copy; 2004 Margaret Leber</p></div><div><p class="pubdate">30 January 2004</p></div><div><div class="revhistory"><table summary="Revision history" width="100%" border="1"><tr><th colspan="3" valign="top" align="left"><b>Revision History</b></th></tr><tr><td align="left">Revision 1.0</td><td align="left">January 21 2004</td><td align="left">msl</td></tr><tr><td colspan="3" align="left">initial</td></tr></table></div></div><div><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+This document is a guide for users of the JHamTune system 
+for controlling amateur radio stations. 
+</p><p>
+<div><img src="./JHTLogo256.jpg"></div>
+</p></div></div></div><div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="chapter"><a href="#install">1. Installation</a></span></dt><dd><dl><dt><span class="section"><a href="#N10033">The Preview Edition</a></span></dt><dt><span class="section"><a href="#N1004B">System Requirements</a></span></dt><dd><dl><dt><span class="section"><a href="#N1004E">Java Runtime</a></span></dt><dt><span class="section"><a href="#N10057">Java Libraries</a></span></dt><dt><span class="section"><a href="#N10071">Configuration</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#future">2. Future Directions</a></span></dt><dt><span class="chapter"><a href="#gui">3. Operation</a></span></dt><dd><dl><dt><span class="section"><a href="#N1009C">Main Window</a></span></dt><dd><dl><dt><span class="section"><a href="#N100C4">Menus</a></span></dt></dl></dd><dt><span class="section"><a href="#N10104">Tuner Display</a></span></dt><dt><span class="section"><a href="#N10110">Scanner Window</a></span></dt><dt><span class="section"><a href="#N10122">Sweeper Box</a></span></dt></dl></dd><dt><span class="chapter"><a href="#drivers">4. Radio Drivers</a></span></dt><dd><dl><dt><span class="section"><a href="#N10132">General</a></span></dt><dt><span class="section"><a href="#N1013C">Yaesu FT-847</a></span></dt><dt><span class="section"><a href="#N10141">Simulated Radio</a></span></dt><dt><span class="section"><a href="#N10146">For developers: Writing new JHamTune radio drivers</a></span></dt><dd><dl><dt><span class="section"><a href="#CLASS-8">Interface JHTRadio</a></span></dt></dl></dd></dl></dd></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>3.1. <a href="#N1009F">Main Window</a></dt><dt>3.2. <a href="#N10107">Tuner</a></dt><dt>3.3. <a href="#N10113">Scanner</a></dt><dt>3.4. <a href="#N10125">Sweeper</a></dt></dl></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="install"></a>Chapter&nbsp;1.&nbsp;Installation</h2></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#N10033">The Preview Edition</a></span></dt><dt><span class="section"><a href="#N1004B">System Requirements</a></span></dt><dd><dl><dt><span class="section"><a href="#N1004E">Java Runtime</a></span></dt><dt><span class="section"><a href="#N10057">Java Libraries</a></span></dt><dt><span class="section"><a href="#N10071">Configuration</a></span></dt></dl></dd></dl></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10033"></a>The Preview Edition</h2></div></div><div></div></div><p>
+The Preview Edition of JHamTune (packaged in the file 
+<tt class="filename">JHamTuneDemo.jar</tt>)
+has only one radio driver (Yaesu FT-847) and
+no means of configuring other drivers or saving driver configuration parameters. 
+This is because at this time there is only one working driver, and the driver 
+configuration code has not yet been written. Until several radio drivers 
+have been developed, the driver model and interface may be in a state of flux. 
+</p><p>
+To launch the Preview Edition, include the name of the serial port to which 
+your FT-847 CAT port is attached as a command line parameter, for example:
+<table summary="Simple list" border="0" class="simplelist"><tr><td><b class="userinput"><tt>java -jar JHamTuneDemo.jar COM2</tt></b> or</td></tr><tr><td><b class="userinput"><tt>java -jar JHamTuneDemo.jar /dev/ttyS1</tt></b></td></tr></table>
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N1004B"></a>System Requirements</h2></div></div><div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="N1004E"></a>Java Runtime</h3></div></div><div></div></div><p>
+The current version of JHamTune was developed and tested with Version 1.4.2 of
+the Sun Microsystems Java 2 Standard Edition System Developer's Kit 
+(J2SE SDK). 
+It requires a compatible Java 2 Runtime Environment. 
+If your computer doesn't have a Java runtime, visit
+<a href="http://java.com" target="_top">
+http://java.com
+</a>
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="N10057"></a>Java Libraries</h3></div></div><div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N1005A"></a>javax.comm</h4></div></div><div></div></div><p>
+Javacomm provides platform-independent access to parallel and serial ports. 
+<a href="http://java.sun.com/products/javacomm" target="_top">
+The Sun Javacomm page:
+http://java.sun.com/products/javacomm
+</a>
+On Linux platforms, 
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="installhelp"></a>javax.help</h4></div></div><div></div></div><p>
+Access to this user manual from the Help menu is provided with JavaHelp.   
+<a href="http://java.sun.com/products/javahelp" target="_top">
+The Sun Java Help page: 
+http://java.sun.com/products/javahelp
+</a> If the jh.jar file is not found during help initialization, a 
+warning message will be logged and the <span class="guimenuitem">User Manual</span>
+menu choice will be unavailable. </p></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="N10071"></a>Configuration</h3></div></div><div></div></div><p></p></div></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="future"></a>Chapter&nbsp;2.&nbsp;Future Directions</h2></div></div><div></div></div><p>
+Development of new JHamTune features will be based on directions
+of interest to the program developers and also on suggestions from users. 
+Some features under consideration are:</p><div class="itemizedlist"><ul type="disc"><li><p>Satellite tracking and pass prediction</p></li><li><p>Scheduled contact management and logging, 
+including an interface to the ARRL 
+<span class="productname">Logbook of the World</span>&trade; system.</p></li><li><p>Exchangable frequency database information</p></li><li><p>Signal recording and analysis</p></li><li><p>Direct  support for use of digital modes: packet, PSK-31, etc
+</p></li></ul></div><p>Let us know at <tt class="email">&lt;<a href="mailto:k3xs@arrl.net">k3xs@arrl.net</a>&gt;</tt> about your own desires, ideas, or 
+interest in participating as a developer. </p></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="gui"></a>Chapter&nbsp;3.&nbsp;Operation</h2></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#N1009C">Main Window</a></span></dt><dd><dl><dt><span class="section"><a href="#N100C4">Menus</a></span></dt></dl></dd><dt><span class="section"><a href="#N10104">Tuner Display</a></span></dt><dt><span class="section"><a href="#N10110">Scanner Window</a></span></dt><dt><span class="section"><a href="#N10122">Sweeper Box</a></span></dt></dl></div><p><div><img src="./JHamTune.jpg"></div></p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N1009C"></a>Main Window</h2></div></div><div></div></div><div class="figure"><a name="N1009F"></a><p class="title"><b>Figure&nbsp;3.1.&nbsp;Main Window</b></p><div><img src="./main.jpg" alt="Main Window"></div></div><p>
+The main window holds a list of tuner settings, and a menu bar. 
+</p><p>
+Each tuner setting contains</p><div class="itemizedlist"><ul type="disc"><li><p>a title</p></li><li><p>a receive frequency</p></li><li><p>a modulation mode</p></li></ul></div><p>and optionally</p><div class="itemizedlist"><ul type="disc"><li><p>
+a transmit frequency for full-duplex or split frequency operation
+</p></li><li><p>
+a CTCSS (also called "PL tone") channel
+</p></li><li><p>
+high and low frequncies specifying band limits for band sweeping operaion
+</p></li></ul></div><p>The list is editable; new entries can be created with the 
+Edit...Insert menu, and deleted with Edit...Delete. 
+Lists can be saved as disk files and reloaded using the file menu.</p><p>
+</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="N100C4"></a>Menus</h3></div></div><div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N100C7"></a>File</h4></div></div><div></div></div><p>The File menu has submenus for loading and saving frequency data tables. 
+"Get Bands from radio" will load a set of frequency tables giving the basic
+capabilities of the connected radio; this information is provided by 
+the radio driver.  
+</p><p>The Save dialog has a checkbox item labelled "Export in XML format". 
+Checking this box will write an XML-encoded copy of the current frequency
+list to the output file. This XML-encoded version should be portable across 
+different verions of JHamTune. The <span class="guisubmenu">Open...</span> function 
+will automatically detect and process the XML-encoded version.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N100D2"></a>Edit</h4></div></div><div></div></div><p>
+The <span class="guimenu">Edit</span> menus allow you to create new or delete entries 
+in the current frequnecy list. <span class="guisubmenu">Insert</span> 
+creates a new empty entry, while
+<span class="guisubmenu">Snapshot</span> creates a new entry with frequency and 
+mode information copied from the radio's current setting. 
+<span class="guisubmenu">Delete</span> will delete the selected list entry
+To edit individual fields on an entry, click the field with your mouse. 
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N100E7"></a>Tune</h4></div></div><div></div></div><p>
+The <span class="guimenu">Tune</span> menu can create a Sweeper box from the 
+current row in the frequency list, or create a scanner window from 
+multiple selected frequencies in the list. It can also tune the radio directly
+to the selected frequency.
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N100F0"></a>Help</h4></div></div><div></div></div><p>The <span class="guimenu">Help</span> menu lets you display either this 
+<span class="guimenuitem">usermanual</span>, or an 
+<span class="guimenuitem">"about"</span> box that 
+gives you version and copyright information.
+(In the event that the JavaHelp library can't be found duing startup, 
+the user manual will not be available, see <a href="#installhelp" title="javax.help">the section called &ldquo;javax.help&rdquo;</a>
+</p></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10104"></a>Tuner Display</h2></div></div><div></div></div><div class="figure"><a name="N10107"></a><p class="title"><b>Figure&nbsp;3.2.&nbsp;Tuner</b></p><div><img src="./tune.jpg" alt="Tuner"></div></div><p>The Tuner window displays the current frequency and modulation mode of the 
+radio, along with a horizontal bar depicting the signal strength as displayed
+by the radio's S-meter.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10110"></a>Scanner Window</h2></div></div><div></div></div><div class="figure"><a name="N10113"></a><p class="title"><b>Figure&nbsp;3.3.&nbsp;Scanner</b></p><div><img src="./scan.jpg" alt="Scanner"></div></div><p>The Scanner Window displays a collection of channel buttons representing 
+a selection of frequencies from the Main Window, an S-meter, 
+and a slider that sets a virtual squelch level.  </p><p>
+JHamTune listens on each frequency in turn looking for a signal that exceeds the 
+squelch level, and when it finds one it stays tuned to that frequency until 
+either the signal drops or the channel is locked out with a single mouse click.
+When a channel breaks squelch, the button title turns bright red. 
+When the scan resumes, each time that channel is found to be quiet, the red 
+color is slightly darkened. By observing the relative colors, you can 
+judge which channels have been the most active recently.</p><p>
+A single mouse click will remove a channel temporarily from the scan, useful 
+when the frequency is busy but not currently of interest. 
+These "locked-out" channels show a darker background. 
+</p><p>
+You can force the scanner to listen to one channel with a double mouse click; 
+the button will turn white, that frequency and mode will be tuned,
+and scanning will stop. To resume scanning, click
+on the locked channel once; scanning will resume and the channel will be locked 
+out of the scan. To return the locked-out channel to the scan click on it again
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10122"></a>Sweeper Box</h2></div></div><div></div></div><div class="figure"><a name="N10125"></a><p class="title"><b>Figure&nbsp;3.4.&nbsp;Sweeper</b></p><div><img src="./sweep.jpg" alt="Sweeper"></div></div><p>The Sweeper Box tunes a radio in narrow steps over a defined frequncy band
+and records the observed signal strength as reported by the radio's signal 
+strength meter. When the sweeping process is complete, individual signal peaks 
+can be tuned by clicking with the mouse on the peak, and a vertical red-line 
+cursor shows the last frequency tuned by this method.</p></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="drivers"></a>Chapter&nbsp;4.&nbsp;Radio Drivers</h2></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#N10132">General</a></span></dt><dt><span class="section"><a href="#N1013C">Yaesu FT-847</a></span></dt><dt><span class="section"><a href="#N10141">Simulated Radio</a></span></dt><dt><span class="section"><a href="#N10146">For developers: Writing new JHamTune radio drivers</a></span></dt><dd><dl><dt><span class="section"><a href="#CLASS-8">Interface JHTRadio</a></span></dt></dl></dd></dl></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10132"></a>General</h2></div></div><div></div></div><p>
+JHamTune is designed around a modular driver scheme. A JHamTune driver is
+a Java class implementing the <tt class="interfacename">JHTRadio</tt>interface 
+for a particular radio, allowing the same user interface to be used with any 
+supported radio, within the limits of that radio's capabilites. 
+</p><p>
+The original JHamTune driver was designed for my Yaesu FT-847 radio.
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N1013C"></a>Yaesu FT-847</h2></div></div><div></div></div><p>
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10141"></a>Simulated Radio</h2></div></div><div></div></div><p>The SimulatedRadio driver does not control an actual radio. 
+It's intended to be used for demonstrating and testing JHamTune when an actual
+radio is not available. 
+Inputs don't actually do anything, and outputs are pretty much random.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10146"></a>For developers: Writing new JHamTune radio drivers</h2></div></div><div></div></div><p>
+JHamTune drivers are responsible for translating method calls on the
+<tt class="interfacename">JHTRadio</tt> interface into
+the appropriate signals to the attached radio. Both the API JavaDoc 
+for the JHTRadio interface and the source code for the Yaesu FT-847 driver
+can serve as guides for writers of new driver classes. 
+The CAT command set of the FT-847 appears in the the driver source code 
+as comments. Developers of new drivers are invited to contribute them to the 
+JHamTune distribution, contact Maggie at <tt class="email">&lt;<a href="mailto:k3xs@arrl.net">k3xs@arrl.net</a>&gt;</tt>. 
+</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CLASS-8"></a>Interface JHTRadio</h3></div></div><div></div></div><a name="N10156" class="indexterm"></a><a name="N1015A" class="indexterm"></a><p>
+an interface implemented by drivers for each <span class="bold"><b>JHamTune</b></span> supported radio.
+      </p><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N10166"></a>Synopsis</h4></div></div><div></div></div><pre class="programlisting">
+package com.k3xs.JHamTune;
+
+public interface <span class="bold"><b>JHTRadio</b></span> {
+
+  <span class="emphasis"><em>// Public Methods</em></span>
+  public void <span class="bold"><b>connect</b></span>();
+<a name="N10178" class="indexterm"></a>  public void <span class="bold"><b>disconnect</b></span>();
+<a name="N10181" class="indexterm"></a>  public void <span class="bold"><b>setFreq</b></span>(int <span class="emphasis"><em>freq</em></span>);
+<a name="N1018D" class="indexterm"></a>  public void <span class="bold"><b>setBand</b></span>(com.k3xs.JHamTune.JHTBand <span class="emphasis"><em>band</em></span>);
+<a name="N10199" class="indexterm"></a>  public int <span class="bold"><b>getFreq</b></span>();
+<a name="N101A2" class="indexterm"></a>  public void <span class="bold"><b>setMode</b></span>(com.k3xs.JHamTune.JHTMode <span class="emphasis"><em>mode</em></span>);
+<a name="N101AE" class="indexterm"></a>  public void <span class="bold"><b>setTone</b></span>(com.k3xs.JHamTune.JHTCTCSS <span class="emphasis"><em>tone</em></span>);
+<a name="N101BA" class="indexterm"></a>  public JHTMode <span class="bold"><b>getMode</b></span>();
+<a name="N101C3" class="indexterm"></a>  public int <span class="bold"><b>getSmeter</b></span>();
+<a name="N101CC" class="indexterm"></a>  public String <span class="bold"><b>getDriverName</b></span>();
+<a name="N101D5" class="indexterm"></a>  public String <span class="bold"><b>getPortName</b></span>();
+<a name="N101DE" class="indexterm"></a>  public String <span class="bold"><b>getName</b></span>();
+<a name="N101E7" class="indexterm"></a>  public Collection <span class="bold"><b>getRxBands</b></span>();
+<a name="N101F0" class="indexterm"></a>  public Collection <span class="bold"><b>getRxTxBands</b></span>();
+<a name="N101F9" class="indexterm"></a>}
+        </pre><p><b>Inheritance Path.&nbsp;</b>
+            <a href="#CLASS-8">com.k3xs.JHamTune.JHTRadio</a>
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N10206"></a>Members</h4></div></div><div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-1"></a>Method connect()</h5></div></div><div></div></div><a name="N1020E" class="indexterm"></a><a name="N10212" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>connect</b></span>();
+<a name="N10223" class="indexterm"></a>
+          </pre><h5><a name="N10228"></a>
+Description
+          </h5><p>
+connect to the radio
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-2"></a>Method disconnect()</h5></div></div><div></div></div><a name="N10232" class="indexterm"></a><a name="N10236" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>disconnect</b></span>();
+<a name="N10247" class="indexterm"></a>
+          </pre><h5><a name="N1024C"></a>
+Description
+          </h5><p>
+disconnect automatic control from the radio
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-10"></a>Method getDriverName()</h5></div></div><div></div></div><a name="N10256" class="indexterm"></a><a name="N1025A" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public String <span class="bold"><b>getDriverName</b></span>();
+<a name="N1026B" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the name for this radio
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-5"></a>Method getFreq()</h5></div></div><div></div></div><a name="N1027F" class="indexterm"></a><a name="N10283" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public int <span class="bold"><b>getFreq</b></span>();
+<a name="N10294" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the current frequency in Hz
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-8"></a>Method getMode()</h5></div></div><div></div></div><a name="N102A8" class="indexterm"></a><a name="N102AC" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public JHTMode <span class="bold"><b>getMode</b></span>();
+<a name="N102BD" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the current modulation mode
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-12"></a>Method getName()</h5></div></div><div></div></div><a name="N102D1" class="indexterm"></a><a name="N102D5" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public String <span class="bold"><b>getName</b></span>();
+<a name="N102E6" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the name for this instance, 
+ usually driverName + " on " + port
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-11"></a>Method getPortName()</h5></div></div><div></div></div><a name="N102FA" class="indexterm"></a><a name="N102FE" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public String <span class="bold"><b>getPortName</b></span>();
+<a name="N1030F" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the name for the port attaching this radio, 
+ or null if not connect()ed
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-13"></a>Method getRxBands()</h5></div></div><div></div></div><a name="N10323" class="indexterm"></a><a name="N10327" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public Collection <span class="bold"><b>getRxBands</b></span>();
+<a name="N10338" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+a Collection of receive-only JHTBands
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-14"></a>Method getRxTxBands()</h5></div></div><div></div></div><a name="N1034C" class="indexterm"></a><a name="N10350" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public Collection <span class="bold"><b>getRxTxBands</b></span>();
+<a name="N10361" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+a Collection of transceive-capable JHTBands
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-9"></a>Method getSmeter()</h5></div></div><div></div></div><a name="N10375" class="indexterm"></a><a name="N10379" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public int <span class="bold"><b>getSmeter</b></span>();
+<a name="N1038A" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term"><span class="emphasis"><em>return</em></span></span></dt><dd><p>
+the current signal strength (S-meter reading expressed 0-31)
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-4"></a>Method setBand(JHTBand)</h5></div></div><div></div></div><a name="N1039E" class="indexterm"></a><a name="N103A2" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>setBand</b></span>(com.k3xs.JHamTune.JHTBand <span class="emphasis"><em>band</em></span>);
+<a name="N103B6" class="indexterm"></a>
+          </pre><h5><a name="N103BB"></a>
+Description
+          </h5><p>
+set mode and band limits from a JHTBand.
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-3"></a>Method setFreq(int)</h5></div></div><div></div></div><a name="N103C5" class="indexterm"></a><a name="N103C9" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>setFreq</b></span>(int <span class="emphasis"><em>freq</em></span>);
+<a name="N103DD" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term">
+                <tt class="varname">freq</tt>
+              </span></dt><dd><p>
+tune the radio to this frequency in Hz.
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-6"></a>Method setMode(JHTMode)</h5></div></div><div></div></div><a name="N103F3" class="indexterm"></a><a name="N103F7" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>setMode</b></span>(com.k3xs.JHamTune.JHTMode <span class="emphasis"><em>mode</em></span>);
+<a name="N1040B" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term">
+                <tt class="varname">mode</tt>
+              </span></dt><dd><p>
+set the radio to this modulation mode.
+</p></dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="METHOD-8-7"></a>Method setTone(JHTCTCSS)</h5></div></div><div></div></div><a name="N10421" class="indexterm"></a><a name="N10425" class="indexterm"></a><pre class="programlisting">
+<span class="emphasis"><em>Synopsis: </em></span>public void <span class="bold"><b>setTone</b></span>(com.k3xs.JHamTune.JHTCTCSS <span class="emphasis"><em>tone</em></span>);
+<a name="N10439" class="indexterm"></a>
+          </pre><div class="variablelist"><p class="title"><b>Parameters</b></p><dl><dt><span class="term">
+                <tt class="varname">tone</tt>
+              </span></dt><dd><p>
+set this CTCSS/PL tone encoding.
+</p></dd></dl></div></div></div></div></div></div></div></body></html>

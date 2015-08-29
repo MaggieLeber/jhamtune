@@ -1,0 +1,40 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter&nbsp;3.&nbsp;Operation</title><meta content="DocBook XSL Stylesheets V1.62.4" name="generator"><link rel="home" href="index.html" title="JHamTune: User Manual"><link rel="up" href="index.html" title="JHamTune: User Manual"><link rel="previous" href="ch02.html" title="Chapter&nbsp;2.&nbsp;Future Directions"><link rel="next" href="ch03s02.html" title="Tuner Display"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="gui"></a>Chapter&nbsp;3.&nbsp;Operation</h2></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="ch03.html#N1009C">Main Window</a></span></dt><dd><dl><dt><span class="section"><a href="ch03.html#N100C4">Menus</a></span></dt></dl></dd><dt><span class="section"><a href="ch03s02.html">Tuner Display</a></span></dt><dt><span class="section"><a href="ch03s03.html">Scanner Window</a></span></dt><dt><span class="section"><a href="ch03s04.html">Sweeper Box</a></span></dt></dl></div><p><div><img src="./JHamTune.jpg"></div></p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N1009C"></a>Main Window</h2></div></div><div></div></div><div class="figure"><a name="N1009F"></a><p class="title"><b>Figure&nbsp;3.1.&nbsp;Main Window</b></p><div><img src="./main.jpg" alt="Main Window"></div></div><p>
+The main window holds a list of tuner settings, and a menu bar. 
+</p><p>
+Each tuner setting contains</p><div class="itemizedlist"><ul type="disc"><li><p>a title</p></li><li><p>a receive frequency</p></li><li><p>a modulation mode</p></li></ul></div><p>and optionally</p><div class="itemizedlist"><ul type="disc"><li><p>
+a transmit frequency for full-duplex or split frequency operation
+</p></li><li><p>
+a CTCSS (also called "PL tone") channel
+</p></li><li><p>
+high and low frequncies specifying band limits for band sweeping operaion
+</p></li></ul></div><p>The list is editable; new entries can be created with the 
+Edit...Insert menu, and deleted with Edit...Delete. 
+Lists can be saved as disk files and reloaded using the file menu.</p><p>
+</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="N100C4"></a>Menus</h3></div></div><div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N100C7"></a>File</h4></div></div><div></div></div><p>The File menu has submenus for loading and saving frequency data tables. 
+"Get Bands from radio" will load a set of frequency tables giving the basic
+capabilities of the connected radio; this information is provided by 
+the radio driver.  
+</p><p>The Save dialog has a checkbox item labelled "Export in XML format". 
+Checking this box will write an XML-encoded copy of the current frequency
+list to the output file. This XML-encoded version should be portable across 
+different verions of JHamTune. The <span class="guisubmenu">Open...</span> function 
+will automatically detect and process the XML-encoded version.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N100D2"></a>Edit</h4></div></div><div></div></div><p>
+The <span class="guimenu">Edit</span> menus allow you to create new or delete entries 
+in the current frequnecy list. <span class="guisubmenu">Insert</span> 
+creates a new empty entry, while
+<span class="guisubmenu">Snapshot</span> creates a new entry with frequency and 
+mode information copied from the radio's current setting. 
+<span class="guisubmenu">Delete</span> will delete the selected list entry
+To edit individual fields on an entry, click the field with your mouse. 
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N100E7"></a>Tune</h4></div></div><div></div></div><p>
+The <span class="guimenu">Tune</span> menu can create a Sweeper box from the 
+current row in the frequency list, or create a scanner window from 
+multiple selected frequencies in the list. It can also tune the radio directly
+to the selected frequency.
+</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="N100F0"></a>Help</h4></div></div><div></div></div><p>The <span class="guimenu">Help</span> menu lets you display either this 
+<span class="guimenuitem">usermanual</span>, or an 
+<span class="guimenuitem">"about"</span> box that 
+gives you version and copyright information.
+(In the event that the JavaHelp library can't be found duing startup, 
+the user manual will not be available, see <a href="ch01s02.html#installhelp" title="javax.help">the section called &ldquo;javax.help&rdquo;</a>
+</p></div></div></div></div></body></html>
